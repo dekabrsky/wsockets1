@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input id="req">
+    <button id="get">Получить файл</button>
+    <p id="result">Результат: </p>
+    <script type="text/javascript">
+        var ws = new WebSocket("ws://localhost:8080/ws/");
+
+        //отправка запроса
+        function send_req(){
+            ws.send(document.getElementById("req".value);
+        }
+
+        ws.onmessage = function (event) {
+            document.getElementById("result").innerHTML += event.data;
+        }
+
+        document.getElementById('get').addEventListener('click', send_req);
+       </script>
+</body>
+</html>

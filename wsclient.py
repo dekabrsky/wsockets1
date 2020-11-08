@@ -3,11 +3,11 @@ import websockets
 
 
 async def connection(adr):
-    async with websockets.connect(adr) as ws:
-       await ws.send(adr)
-    data = await ws.recv()
+    print("hey")
+    async with websockets.connect(adr) as ws:  # открываем соединение
+       await ws.send(adr)  # отправляем запрос
+    data = await ws.recv()  # получаем данные из корутины recv, ожидающей их получение
     print("Получены данные: " + data)
 
 
-adr = input("ws://127.0.0.1:8080/ws/")
-asyncio.get_event_loop().run_until_complete(connection(adr))
+asyncio.get_event_loop().run_until_complete(connection(input("ws://0.0.0.0:8080/ws/")))  # запуск клиента
