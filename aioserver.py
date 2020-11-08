@@ -38,7 +38,7 @@ app = web.Application()  # запускаем веб-приложение
 
 # все файлы получим с помощью одного метода - getFile
 app.add_routes([web.get("/myfile1.txt", getfile)])
-app.add_routes([web.get("/README.md", getfile)]) # поменял, чтобы сделалось описание в гитхабе
+app.add_routes([web.get("/README.md", getfile)]) 
 app.add_routes([web.get("/aioserver.py", getfile)])  # вместо myserver
 
 # путь для получения всего содержимого папки (статических файлов)
