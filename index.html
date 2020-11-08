@@ -16,10 +16,12 @@
             ws.send(document.getElementById("req".value);
         }
 
+        //ждем ответа и добавляем его к результату
         ws.onmessage = function (event) {
             document.getElementById("result").innerHTML += event.data;
         }
 
+        //устанавливаем слушателя для кнопки
         document.getElementById('get').addEventListener('click', send_req);
        </script>
 </body>

@@ -10,7 +10,7 @@ async def websocket_handler(request):
         if msg.type == aiohttp.WSMsgType.TEXT:
             if msg.data == 'close':  # проверяем, не хотят ли закрыть соединение
                 await ws.close()
-            elif msg.data in ("myfile1.txt", "aioserver.py", "README.rst"):
+            elif msg.data in ("myfile1.txt", "aioserver.py", "README.md"):
                 file = open("./" + msg.data)
                 text = file.read()
                 await ws.send_str(text)
@@ -29,7 +29,6 @@ async def websocket_handler(request):
 
 
 async def getfile(request):
-    print("Fff")
     return web.FileResponse(str(request.url).split("/")[3])
     # получаем адрес файла - последнюю часть урла,
     # полученного в запросе
@@ -39,7 +38,7 @@ app = web.Application()  # запускаем веб-приложение
 
 # все файлы получим с помощью одного метода - getFile
 app.add_routes([web.get("/myfile1.txt", getfile)])
-app.add_routes([web.get("/README.rst", getfile)])
+app.add_routes([web.get("/README.md", getfile)]) # поменял, чтобы сделалось описание в гитхабе
 app.add_routes([web.get("/aioserver.py", getfile)])  # вместо myserver
 
 # путь для получения всего содержимого папки (статических файлов)
